@@ -1,22 +1,25 @@
 package com.nablarch.example.form;
 
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Map;
 
+import nablarch.core.beans.BeanUtil;
 import nablarch.core.dataformat.DataRecord;
 import nablarch.core.db.statement.autoproperty.CurrentDateTime;
 import nablarch.core.db.statement.autoproperty.RequestId;
 import nablarch.core.db.statement.autoproperty.UserId;
-import nablarch.core.util.DateUtil;
-import nablarch.core.util.StringUtil;
 import nablarch.fw.messaging.RequestMessage;
 
 /**
  * プロジェクト情報を保持するフォームクラス。
+ *
+ * @author Nabu Rakutaro
  */
 public class ProjectInsertMessageForm {
 
     /** 受信電文連番 */
-    private String receivedMessageSequence;
+    private final String receivedMessageSequence;
 
     /** プロジェクト名 */
     private String projectName;
@@ -66,7 +69,7 @@ public class ProjectInsertMessageForm {
 
     /** 登録日時 */
     @CurrentDateTime
-    private java.sql.Timestamp insertDate;
+    private Timestamp insertDate;
 
     /** 登録リクエストID */
     @RequestId
@@ -78,7 +81,7 @@ public class ProjectInsertMessageForm {
 
     /** 更新日時 */
     @CurrentDateTime
-    private java.sql.Timestamp updatedDate;
+    private Timestamp updatedDate;
 
     /**
      * コンストラクタ。<br />
@@ -88,50 +91,11 @@ public class ProjectInsertMessageForm {
      * @param receivedMessageSequence 受信電文連番(フレームワークがID_GENERATEテーブルを使用して採番したIDが渡される)
      * @param message 受信電文
      */
-    public ProjectInsertMessageForm(String receivedMessageSequence, RequestMessage message) {
+    public ProjectInsertMessageForm(final String receivedMessageSequence, final RequestMessage message) {
         this.receivedMessageSequence = receivedMessageSequence;
-
-        DataRecord data = message.getRecordOf("userData");
-
-        projectName = data.getString("projectName");
-        projectType = data.getString("projectType");
-        projectClass = data.getString("projectClass");
-
-        String projectStartDateSt = data.getString("projectStartDate");
-        if (StringUtil.hasValue(projectStartDateSt)) {
-            projectStartDate = DateUtil.getParsedDate(projectStartDateSt, "yyyyMMdd");
-        }
-
-        String projectEndDateSt = data.getString("projectEndDate");
-        if (StringUtil.hasValue(projectEndDateSt)) {
-            projectEndDate = DateUtil.getParsedDate(projectEndDateSt, "yyyyMMdd");
-        }
-
-        projectClass = data.getString("projectClass");
-        clientId = data.getString("clientId");
-        projectManager = data.getString("projectManager");
-        projectLeader = data.getString("projectLeader");
-        userId = data.getString("userId");
-        note = data.getString("note");
-
-        String salesSt = data.getString("sales");
-        if (StringUtil.hasValue(salesSt)) {
-            sales = Integer.valueOf(salesSt);
-        }
-
-        String costOfGoodsSoldSt = data.getString("costOfGoodsSold");
-        if (StringUtil.hasValue(costOfGoodsSoldSt)) {
-            costOfGoodsSold = Integer.valueOf(costOfGoodsSoldSt);
-        }
-
-        String sgaSt = data.getString("sga");
-        if (StringUtil.hasValue(sgaSt)) {
-            sga = Integer.valueOf(sgaSt);
-        }
-
-        String allocationOfCorpExpensesSt = data.getString("allocationOfCorpExpenses");
-        if (StringUtil.hasValue(allocationOfCorpExpensesSt)) {
-            allocationOfCorpExpenses = Integer.valueOf(allocationOfCorpExpensesSt);
+        final DataRecord data = message.getRecordOf("userData");
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            BeanUtil.setProperty(this, entry.getKey(), entry.getValue());
         }
     }
 
@@ -267,7 +231,7 @@ public class ProjectInsertMessageForm {
      * 登録日時を取得する。
      * @return 登録日時
      */
-    public java.sql.Timestamp getInsertDate() {
+    public Timestamp getInsertDate() {
         return insertDate;
     }
 
@@ -291,7 +255,119 @@ public class ProjectInsertMessageForm {
      * 更新日時を取得する。
      * @return 更新日時
      */
-    public java.sql.Timestamp getUpdatedDate() {
+    public Timestamp getUpdatedDate() {
         return updatedDate;
+    }
+
+    /**
+     * プロジェクト名を設定する。
+     * @param projectName プロジェクト名
+     */
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    /**
+     * プロジェクト種別を設定する。
+     * @param projectType プロジェクト種別
+     */
+    public void setProjectType(String projectType) {
+        this.projectType = projectType;
+    }
+
+    /**
+     * プロジェクト分類を設定する。
+     * @param projectClass プロジェクト分類
+     */
+    public void setProjectClass(String projectClass) {
+        this.projectClass = projectClass;
+    }
+
+    /**
+     * プロジェクト開始日付を設定する。
+     * @param projectStartDate プロジェクト開始日付
+     */
+    public void setProjectStartDate(Date projectStartDate) {
+        this.projectStartDate = projectStartDate;
+    }
+
+    /**
+     * プロジェクト終了日付を設定する。
+     * @param projectEndDate プロジェクト終了日付
+     */
+    public void setProjectEndDate(Date projectEndDate) {
+        this.projectEndDate = projectEndDate;
+    }
+
+    /**
+     * クライアントIDを設定する。
+     * @param clientId クライアントID
+     */
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    /**
+     * プロジェクトマネージャを設定する。
+     * @param projectManager プロジェクトマネージャ
+     */
+    public void setProjectManager(String projectManager) {
+        this.projectManager = projectManager;
+    }
+
+    /**
+     * プロジェクトリーダを設定する。
+     * @param projectLeader プロジェクトリーダ
+     */
+    public void setProjectLeader(String projectLeader) {
+        this.projectLeader = projectLeader;
+    }
+
+    /**
+     * ユーザIDを設定する。
+     * @param userId ユーザ
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * 備考を設定する。
+     * @param note 備考
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    /**
+     * 売上高を設定する。
+     * @param sales 売上高
+     */
+    public void setSales(Integer sales) {
+        this.sales = sales;
+    }
+
+    /**
+     * 売上原価を設定する。
+     * @param costOfGoodsSold 売上原価
+     */
+    public void setCostOfGoodsSold(Integer costOfGoodsSold) {
+        this.costOfGoodsSold = costOfGoodsSold;
+    }
+
+    /**
+     * 販売費を設定する。
+     * @param sga 販売費
+     */
+    public void setSga(Integer sga) {
+        this.sga = sga;
+    }
+
+    /**
+     * 本社配賦を設定する。
+     * @param allocationOfCorpExpenses 本社配賦
+     */
+    public void setAllocationOfCorpExpenses(Integer allocationOfCorpExpenses) {
+        this.allocationOfCorpExpenses = allocationOfCorpExpenses;
     }
 }
