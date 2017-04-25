@@ -58,7 +58,7 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 
 なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下のコマンドでもアプリケーションを実行することが可能です。
 
-    $java -jar target/application-5u9.jar -diConfig classpath:messaging-async-receive-boot.xml -requestPath RECEIVEAPP -userId batch_user -messageRequestId ProjectInsertMessage
+    $java -jar target/application-<version_no>.jar -diConfig classpath:messaging-async-receive-boot.xml -requestPath RECEIVEAPP -userId batch_user -messageRequestId ProjectInsertMessage
 
 起動に成功すると以下のようなログがコンソールに出力され、MOM応答不要メッセージングの送信側からのメッセージの受信待ちの状態になります。
 
