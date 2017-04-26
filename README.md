@@ -54,11 +54,11 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 以下のコマンドで、MOM応答不要メッセージングの受信側のExampleが起動します。
 
     $mvn -P gsp gsp-dba:import-schema
-    $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-diConfig' 'messaging-async-send-boot.xml' '-requestPath' 'SENDAPP' '-userId' 'batch_user' '-messageRequestId' 'ProjectInsertMessage'"
+    $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-diConfig' 'messaging-async-receive-boot.xml' '-requestPath' 'RECEIVEAPP' '-userId' 'batch_user'"
 
 なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下のコマンドでもアプリケーションを実行することが可能です。
 
-    $java -jar target/application-<version_no>.jar -diConfig classpath:messaging-async-receive-boot.xml -requestPath RECEIVEAPP -userId batch_user -messageRequestId ProjectInsertMessage
+    $java -jar target/application-<version_no>.jar -diConfig classpath:messaging-async-receive-boot.xml -requestPath RECEIVEAPP -userId batch_user
 
 起動に成功すると以下のようなログがコンソールに出力され、MOM応答不要メッセージングの送信側からのメッセージの受信待ちの状態になります。
 
