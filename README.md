@@ -46,24 +46,26 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 続いて、データベースのセットアップ及びエンティティクラスの作成を行います。以下のコマンドを実行してください。
 
     $cd ../nablarch-example-mom-delayed-receive
-    $mvn -P gsp clean generate-resources
-    $mvn -P gsp install:install-file
+    $mvn clean generate-resources
 
 #### 3.3. アプリケーションのビルド
 次に、nablarch-example-mom-delayed-receiveをビルドします。以下のコマンドを実行してください。
 
-    $mvn clean package
+    $mvn package
 
 ### 4. アプリケーションの起動
 
-以下のコマンドで、MOM応答不要メッセージングの受信側のExampleが起動します。
+以下のコマンドで、データベースの状態を最新化、MOM応答不要メッセージングの受信側のExampleが起動します。
 
-    $mvn -P gsp gsp-dba:import-schema
+    $mvn generate-resources
     $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-diConfig' 'messaging-async-receive-boot.xml' '-requestPath' 'RECEIVEAPP' '-userId' 'batch_user'"
 
-なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下のコマンドでもアプリケーションを実行することが可能です。
+なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下の手順にて実行することもできます。
 
-    $java -jar target/application-<version_no>.jar -diConfig classpath:messaging-async-receive-boot.xml -requestPath RECEIVEAPP -userId batch_user
+1. ``target/application-<version_no>.zip`` を任意のディレクトリに解凍する。
+2. 以下のコマンドにて実行する
+
+    $java -jar <1で解凍したディレクトリ名>/nablarch-example-mom-delayed-receive-<version_no>.jar -diConfig classpath:messaging-async-receive-boot.xml -requestPath RECEIVEAPP -userId batch_user
 
 起動に成功すると以下のようなログがコンソールに出力され、MOM応答不要メッセージングの送信側からのメッセージの受信待ちの状態になります。
 
