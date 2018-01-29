@@ -18,10 +18,6 @@
     <db.user>SAMPLE</db.user>
   </properties>
 
-  <!--
-    このプロファイルは環境を指定するものであり、相互に排他的である。
-    複数のプロファイルを同時に指定してはならない。
-  -->
   <profiles>
     <profile>
       <id>dev-deploy</id>
