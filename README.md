@@ -60,9 +60,12 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
     $mvn generate-resources
     $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-diConfig' 'messaging-async-receive-boot.xml' '-requestPath' 'RECEIVEAPP' '-userId' 'batch_user'"
 
-なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下のコマンドでもアプリケーションを実行することが可能です。
+なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下の手順にて実行することもできます。
 
-    $java -jar target/application-<version_no>.jar -diConfig classpath:messaging-async-receive-boot.xml -requestPath RECEIVEAPP -userId batch_user
+1. ``target/application-<version_no>.zip`` を任意のディレクトリに解凍する。
+2. 以下のコマンドにて実行する
+
+    $java -jar <1で解凍したディレクトリ名>/nablarch-example-mom-delayed-receive-<version_no>.jar -diConfig classpath:messaging-async-receive-boot.xml -requestPath RECEIVEAPP -userId batch_user
 
 起動に成功すると以下のようなログがコンソールに出力され、MOM応答不要メッセージングの送信側からのメッセージの受信待ちの状態になります。
 
