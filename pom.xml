@@ -212,18 +212,6 @@
           </excludes>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>jp.co.tis.gsp</groupId>
-        <artifactId>gsp-dba-maven-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.196</version>
-            <scope>runtime</scope>
-          </dependency>
-        </dependencies>
-      </plugin>
       <!-- レポーティング用のプラグインを追加 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
