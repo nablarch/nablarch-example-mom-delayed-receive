@@ -100,6 +100,12 @@
     <!-- グローバルエラーハンドラ -->
     <component class="nablarch.fw.handler.GlobalErrorHandler" />
 
+    <!-- スレッドコンテキスト変数削除ハンドラ -->
+    <component class="nablarch.common.handler.threadcontext.ThreadContextClearHandler" />
+
+    <!-- スレッドコンテキスト設定ハンドラ -->
+    <component-ref name="threadContextHandler" />
+
     <!-- マルチスレッド実行制御ハンドラ -->
     <component-ref name="multiThreadExecutionHandler" />
 
@@ -114,12 +120,6 @@
 
     <!-- リクエストスレッドループ -->
     <component-ref name="requestThreadLoopHandler" />
-
-    <!-- スレッドコンテキスト変数削除ハンドラ -->
-    <component class="nablarch.common.handler.threadcontext.ThreadContextClearHandler" />
-
-    <!-- スレッドコンテキスト設定ハンドラ -->
-    <component-ref name="threadContextHandler" />
 
     <!-- プロセス停止制御ハンドラ -->
     <component-ref name="processStopHandler" />
