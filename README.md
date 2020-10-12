@@ -1,10 +1,6 @@
 nablarch-example-mom-delayed-receive
 ====================================
 
-| master | develop |
-|:-----------|:------------|
-|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-mom-delayed-receive.svg?branch=master)](https://travis-ci.org/nablarch/nablarch-example-mom-delayed-receive)|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-mom-delayed-receive.svg?branch=develop)](https://travis-ci.org/nablarch/nablarch-example-mom-delayed-receive)|
-
 Nablarch FrameworkのMOM応答不要メッセージングの受信側のExampleです。
 MOM応答不要メッセージングの送信側のExampleと組み合わせて使用します。
 
