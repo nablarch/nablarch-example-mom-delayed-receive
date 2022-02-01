@@ -1,16 +1,19 @@
 package com.nablarch.example;
 
-import org.junit.Test;
+import nablarch.test.core.messaging.MessagingReceiveTestSupport;
+import nablarch.test.junit5.extension.messaging.MessagingReceiveTest;
+import org.junit.jupiter.api.Test;
 
-import com.nablarch.example.test.MessagingRequestTestBase;
+@MessagingReceiveTest
+public class ProjectInsertMessageRequestTest {
 
-public class ProjectInsertMessageRequestTest extends MessagingRequestTestBase {
+    MessagingReceiveTestSupport support;
 
     /**
      * 正常系のテスト。
      */
     @Test
     public void testNormalEnd() {
-        execute();
+        support.execute(support.testName.getMethodName());
     }
 }
