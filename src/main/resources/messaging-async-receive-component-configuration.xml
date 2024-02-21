@@ -195,7 +195,7 @@
         <component-ref name="processStopHandler" />
         <component-ref name="idGenerator" />
         <!-- メッセージングプロバイダ -->
-        <component-ref name="messagingProvider" />
+        <component-ref name="wmqMessagingProvider" />
       </list>
     </property>
   </component>
