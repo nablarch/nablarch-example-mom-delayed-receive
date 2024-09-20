@@ -39,7 +39,7 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
     $mvn clean install
 
 #### 3.3. アプリケーションのビルド
-続いて、nablarch-example-mom-delayed-receiveをビルドします。以下のコマンドを実行してください。
+続いて、データベースのセットアップとnablarch-example-mom-delayed-receiveのビルドを行います。以下のコマンドを実行してください。
 
     $cd ../nablarch-example-mom-delayed-receive
     $mvn package
