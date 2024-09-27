@@ -38,15 +38,10 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
     $cd nablarch-example-mom-testing-common
     $mvn clean install
 
-#### 3.2. データベースのセットアップ及びエンティティクラスの作成
-続いて、データベースのセットアップ及びエンティティクラスの作成を行います。以下のコマンドを実行してください。
+#### 3.3. アプリケーションのビルド
+次に、データベースのセットアップとnablarch-example-mom-delayed-receiveのビルドを行います。以下のコマンドを実行してください。
 
     $cd ../nablarch-example-mom-delayed-receive
-    $mvn clean generate-resources
-
-#### 3.3. アプリケーションのビルド
-次に、nablarch-example-mom-delayed-receiveをビルドします。以下のコマンドを実行してください。
-
     $mvn package
 
 ### 4. アプリケーションの起動
