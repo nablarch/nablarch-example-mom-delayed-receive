@@ -133,12 +133,12 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 
 **Steps**:
 
-- [ ] 変換対象となった Excel ファイルを削除する
-- [ ] 削除結果（残存Excelが0件であること）を `checks/task-4.md` に記録する
-- [ ] Excelファイル削除をコミットする
-- [ ] self-check (OK/NG per completion criterion, record in checks/task-4.md)
+- [x] 変換対象となった Excel ファイルを削除する
+- [x] 削除結果（残存Excelが0件であること）を `checks/task-4.md` に記録する
+- [x] Excelファイル削除をコミットする
+- [x] self-check (OK/NG per completion criterion, record in checks/task-4.md)
 - [ ] QA expert review (Agent: general-purpose / Opus 4.8)
-- [ ] user review
+- [ ] user review（順調のため全task完了後にまとめて実施）
 
 **Completion criteria**:
 
@@ -185,6 +185,6 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 
 - **Status**: in progress
 - **Date**: 2026-10-06
-- **Last completed**: #3 YAML変換＋サンプリング突合（QA Verdict OK、差異なし）
-- **Next**: #4 Excel削除
+- **Last completed**: #4 Excel削除（残存0件、self-check OK）
+- **Next**: #4 QAレビュー → #5 Excelなしで全テストパス確認
 - **Notes**: ベースライン `mvn clean test` = BUILD SUCCESS（Tests run: 1, Failures: 0, Errors: 0, Skipped: 0）。user review は順調時まとめて実施方針。
