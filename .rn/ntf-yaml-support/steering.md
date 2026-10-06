@@ -68,8 +68,8 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 - [x] 結果を `checks/task-1.md` に記録する（self-check列のみ）
 - [x] 変更ファイル（check ファイルおよび steering.md）をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-1.md)
-- [ ] QA expert review (Agent: general-purpose / Opus 4.8)
-- [ ] user review
+- [x] QA expert review (Agent: general-purpose / Opus 4.8) — Overall Verdict: OK
+- [ ] user review（順調のため全task完了後にまとめて実施）
 
 **Completion criteria**:
 
@@ -181,6 +181,6 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 
 - **Status**: in progress
 - **Date**: 2026-10-06
-- **Last completed**: #1 のビルド・テスト確認（self-check まで）
-- **Next**: #1 の QA レビュー → #2 設定変更
+- **Last completed**: #1 完了（QA Verdict OK）
+- **Next**: #2 設定変更（pom.xml / unit-test.xml）
 - **Notes**: ベースライン `mvn clean test` = BUILD SUCCESS（Tests run: 1, Failures: 0, Errors: 0, Skipped: 0）。user review は順調時まとめて実施方針。
