@@ -109,15 +109,15 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 
 **Steps**:
 
-- [ ] 対象 Excel ファイルの所在を確認する
-- [ ] 同名の `.xls` と `.xlsx` が併存していないか確認する（本プロジェクトは `.xlsx` 1件のみで併存なし）
-- [ ] README の手順に従い、全ての対象ExcelファイルをYAML変換する
-- [ ] 変換後、各YAMLファイルについてExcelの内容とサンプリングで比較し、一致を確認する（各ファイル最低3件）
-- [ ] サンプリング比較結果を `checks/task-3.md` に記録する（差異があれば報告・停止）
-- [ ] 変換したYAMLファイルをコミットする（Excelはまだ削除しない）
-- [ ] self-check (OK/NG per completion criterion, record in checks/task-3.md)
+- [x] 対象 Excel ファイルの所在を確認する（`src/test/java/com/nablarch/example/ProjectInsertMessageRequestTest.xlsx` 1件）
+- [x] 同名の `.xls` と `.xlsx` が併存していないか確認する（本プロジェクトは `.xlsx` 1件のみで併存なし）
+- [x] README の手順に従い、全ての対象ExcelファイルをYAML変換する（`mvn nablarch-testing-converter:convert` → Converted 1 file(s)）
+- [x] 変換後、各YAMLファイルについてExcelの内容とサンプリングで比較し、一致を確認する（全データ突合＝最低3件要件を超過）
+- [x] サンプリング比較結果を `checks/task-3.md` に記録する（差異なし）
+- [x] 変換したYAMLファイルをコミットする（Excelはまだ削除しない）
+- [x] self-check (OK/NG per completion criterion, record in checks/task-3.md)
 - [ ] QA expert review (Agent: general-purpose / Opus 4.8)
-- [ ] user review
+- [ ] user review（順調のため全task完了後にまとめて実施）
 
 **Completion criteria**:
 
@@ -177,10 +177,14 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
   - Excelデータに `RESPONSE_*` ブロックは無く、同期送信（sendSync）系ではない → Rules の「非該当（unit-test.xml だけで足りる）」ケースに合致。
   - 配置順: `unit-test.xml` 内で `nablarch/test/test-data.xml` の import より後、かつ `dbInfo` 定義より後に置き、参照解決（`nullInterpreter` 等の component-ref、`dbInfo` ref）を担保する。
 
+# Scripts
+
+- `scripts/dump_xlsx_grid.py` — 標準ライブラリ（zipfile + xml.etree）のみで `.xlsx` の各シートをセルグリッド（セル参照→値）として出力する。openpyxl 非導入環境で、task-3 のExcel↔YAMLサンプリング突合の際に元Excel側を正確に読むために作成。使い方: `python3 -I .rn/ntf-yaml-support/scripts/dump_xlsx_grid.py <xlsx>`。
+
 # State
 
 - **Status**: in progress
 - **Date**: 2026-10-06
-- **Last completed**: #2 設定変更（QA/Language/SE 全レビュー Verdict OK）
-- **Next**: #3 ExcelテストデータをYAMLに変換
+- **Last completed**: #3 YAML変換＋サンプリング突合（差異なし、self-check OK）
+- **Next**: #3 QAレビュー → #4 Excel削除
 - **Notes**: ベースライン `mvn clean test` = BUILD SUCCESS（Tests run: 1, Failures: 0, Errors: 0, Skipped: 0）。user review は順調時まとめて実施方針。
