@@ -89,9 +89,9 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 - [x] `mvn dependency:resolve` / `mvn help:describe` で yaml依存・converterプラグインの `convert` ゴールが解決できることを確認する
 - [x] 変更したファイルをコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-2.md)
-- [ ] QA expert review (Agent: general-purpose / Opus 4.8)
-- [ ] language expert review (Agent: general-purpose / Opus 4.8)
-- [ ] software-engineering expert review (Agent: general-purpose / Opus 4.8)
+- [x] QA expert review (Agent: general-purpose / Opus 4.8) — OK
+- [x] language expert review (Agent: general-purpose / Opus 4.8) — OK
+- [x] software-engineering expert review (Agent: general-purpose / Opus 4.8) — OK
 - [ ] user review（順調のため全task完了後にまとめて実施）
 
 **Completion criteria**:
@@ -181,6 +181,6 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 
 - **Status**: in progress
 - **Date**: 2026-10-06
-- **Last completed**: #2 設定変更（self-check OK、レビュー実施中）
-- **Next**: #2 の3エキスパートレビュー → #3 YAML変換
+- **Last completed**: #2 設定変更（QA/Language/SE 全レビュー Verdict OK）
+- **Next**: #3 ExcelテストデータをYAMLに変換
 - **Notes**: ベースライン `mvn clean test` = BUILD SUCCESS（Tests run: 1, Failures: 0, Errors: 0, Skipped: 0）。user review は順調時まとめて実施方針。
