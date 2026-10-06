@@ -4,9 +4,9 @@
 
 | Criterion | Self-check | Evidence | QA | QA Evidence |
 |---|---|---|---|---|
-| 変換対象の全ExcelファイルにYAMLが生成されている | OK | `ProjectInsertMessageRequestTest.xlsx`（2シート: setUpDb / testNormalEnd）→ `ProjectInsertMessageRequestTest/setUpDb.yaml` と `ProjectInsertMessageRequestTest/testNormalEnd.yaml` を生成。converter: `Converted 1 file(s).` / BUILD SUCCESS | | |
-| サンプリング比較でExcelとYAMLが一致 | OK | 下記「サンプリング比較詳細」参照。全ブロック・全データ行を突合し差異なし | | |
-| 変換後YAMLがコミットされている | OK | 本タスクでコミット（Excelは未削除） | | |
+| 変換対象の全ExcelファイルにYAMLが生成されている | OK | `ProjectInsertMessageRequestTest.xlsx`（2シート: setUpDb / testNormalEnd）→ `ProjectInsertMessageRequestTest/setUpDb.yaml` と `ProjectInsertMessageRequestTest/testNormalEnd.yaml` を生成。converter: `Converted 1 file(s).` / BUILD SUCCESS | OK | 2シート→2ファイル生成を独立確認。空シート→空ファイルも妥当 |
+| サンプリング比較でExcelとYAMLが一致 | OK | 下記「サンプリング比較詳細」参照。全ブロック・全データ行を突合し差異なし | OK | ダンプ＋生XMLの二重手段で全5ブロックを独立突合、キー・値・長さ・列数まで一致。差異ゼロ |
+| 変換後YAMLがコミットされている | OK | 本タスクでコミット（Excelは未削除） | OK | 403e03f にYAML含有、`git ls-files` で .xlsx 未削除を確認 |
 
 補足: `.xls` と `.xlsx` の同名併存なし（`.xlsx` 1件のみ）。converter の重複カラムWARNも無し。
 
@@ -46,8 +46,8 @@
 
 | Aspect | Verdict | Evidence / Improvement |
 |---|---|---|
-| Meaningful tests/verification | | |
-| Edge case coverage | | |
+| Meaningful tests/verification | OK | Excelの全ブロックをダンプ＋生XMLの二重手段で独立突合。キー・値・長さ・列数まで一致確認。空シート/空セットアップテーブルの忠実性も検証 |
+| Edge case coverage | OK | 空シート→空ファイル、列ヘッダのみ/データ行ゼロ→rows:[]、FILLER2 の空文字、採番初期値0、日付表記、ふりがな非採用、暗黙 file-type のエッジを網羅 |
 
 ## Expert Reviews (code changes only)
 
@@ -56,7 +56,7 @@ N/A — no code changes in this task.（テストデータ変換のみ。`.java`
 ## Overall Verdict
 
 - Self-check: OK
-- QA: 未実施
+- QA: OK（Excel↔YAML 差異ゼロ。file-type:Fixed・ふりがな非採用も忠実変換と確認）
 - Language expert: N/A
 - Software-engineering expert: N/A
-- Ready for user review: 保留（QAレビュー後）
+- Ready for user review: Yes（user review は全task完了後にまとめて実施）

@@ -116,7 +116,7 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 - [x] サンプリング比較結果を `checks/task-3.md` に記録する（差異なし）
 - [x] 変換したYAMLファイルをコミットする（Excelはまだ削除しない）
 - [x] self-check (OK/NG per completion criterion, record in checks/task-3.md)
-- [ ] QA expert review (Agent: general-purpose / Opus 4.8)
+- [x] QA expert review (Agent: general-purpose / Opus 4.8) — OK（差異なし）
 - [ ] user review（順調のため全task完了後にまとめて実施）
 
 **Completion criteria**:
@@ -185,6 +185,6 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 
 - **Status**: in progress
 - **Date**: 2026-10-06
-- **Last completed**: #3 YAML変換＋サンプリング突合（差異なし、self-check OK）
-- **Next**: #3 QAレビュー → #4 Excel削除
+- **Last completed**: #3 YAML変換＋サンプリング突合（QA Verdict OK、差異なし）
+- **Next**: #4 Excel削除
 - **Notes**: ベースライン `mvn clean test` = BUILD SUCCESS（Tests run: 1, Failures: 0, Errors: 0, Skipped: 0）。user review は順調時まとめて実施方針。
