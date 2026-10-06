@@ -60,3 +60,4 @@ N/A — no code changes in this task.（テストデータ変換のみ。`.java`
 - Language expert: N/A
 - Software-engineering expert: N/A
 - Ready for user review: Yes（user review は全task完了後にまとめて実施）
+- User review: OK（ユーザー承認済み）

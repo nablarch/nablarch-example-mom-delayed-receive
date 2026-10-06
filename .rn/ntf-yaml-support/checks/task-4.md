@@ -27,3 +27,4 @@ N/A — no code changes in this task.（Excel削除のみ。`.java` は不変更
 - Language expert: N/A
 - Software-engineering expert: N/A
 - Ready for user review: Yes（user review は全task完了後にまとめて実施）
+- User review: OK（ユーザー承認済み）

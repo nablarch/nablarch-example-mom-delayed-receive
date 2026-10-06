@@ -69,7 +69,7 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 - [x] 変更ファイル（check ファイルおよび steering.md）をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-1.md)
 - [x] QA expert review (Agent: general-purpose / Opus 4.8) — Overall Verdict: OK
-- [ ] user review（順調のため全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 
 **Completion criteria**:
 
@@ -92,7 +92,7 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 - [x] QA expert review (Agent: general-purpose / Opus 4.8) — OK
 - [x] language expert review (Agent: general-purpose / Opus 4.8) — OK
 - [x] software-engineering expert review (Agent: general-purpose / Opus 4.8) — OK
-- [ ] user review（順調のため全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 
 **Completion criteria**:
 
@@ -117,7 +117,7 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 - [x] 変換したYAMLファイルをコミットする（Excelはまだ削除しない）
 - [x] self-check (OK/NG per completion criterion, record in checks/task-3.md)
 - [x] QA expert review (Agent: general-purpose / Opus 4.8) — OK（差異なし）
-- [ ] user review（順調のため全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 
 **Completion criteria**:
 
@@ -138,7 +138,7 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 - [x] Excelファイル削除をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-4.md)
 - [x] QA expert review (Agent: general-purpose / Opus 4.8) — OK
-- [ ] user review（順調のため全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 
 **Completion criteria**:
 
@@ -159,7 +159,7 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 - [x] QA expert review (Agent: general-purpose / Opus 4.8) — OK（環境起因フレーク1件を申し送り）
 - [x] language expert review (Agent: general-purpose / Opus 4.8) — OK
 - [x] software-engineering expert review (Agent: general-purpose / Opus 4.8) — OK
-- [ ] user review（全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 
 **Completion criteria**:
 
@@ -183,7 +183,7 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 
 # State
 
-- **Status**: 全タスク(#1-#5)完了。残りは user review（まとめて）と最後の push（ユーザー実施）のみ
+- **Status**: 全タスク(#1-#5)完了・user review 承認済み。残りは最後の push（ユーザー実施）のみ
 - **Date**: 2026-10-06
 - **Last completed**: #5 Excelなしで全テストパス確認＋YamlTestDataParser使用確認（QA/Language/SE 全OK）
 - **Next**: ユーザーによるまとめレビュー → push
