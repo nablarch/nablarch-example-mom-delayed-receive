@@ -153,13 +153,13 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 
 **Steps**:
 
-- [ ] `mvn test` が BUILD SUCCESS になることを確認する
-- [ ] テストログで YamlTestDataParser が実際に使われていることを確認する
-- [ ] self-check (OK/NG per completion criterion, record in checks/task-5.md)
-- [ ] QA expert review (Agent: general-purpose / Opus 4.8)
-- [ ] language expert review (Agent: general-purpose / Opus 4.8)
-- [ ] software-engineering expert review (Agent: general-purpose / Opus 4.8)
-- [ ] user review
+- [x] `mvn test` が BUILD SUCCESS になることを確認する（Excelなし・YAML使用で Tests run:1, Failures:0）
+- [x] テストログで YamlTestDataParser が実際に使われていることを確認する（上書きログ＋実行時ログ）
+- [x] self-check (OK/NG per completion criterion, record in checks/task-5.md)
+- [x] QA expert review (Agent: general-purpose / Opus 4.8) — OK（環境起因フレーク1件を申し送り）
+- [x] language expert review (Agent: general-purpose / Opus 4.8) — OK
+- [x] software-engineering expert review (Agent: general-purpose / Opus 4.8) — OK
+- [ ] user review（全task完了後にまとめて実施）
 
 **Completion criteria**:
 
@@ -183,8 +183,9 @@ READMEより、本プロジェクトのビルド・テスト手順は以下。
 
 # State
 
-- **Status**: in progress
+- **Status**: 全タスク(#1-#5)完了。残りは user review（まとめて）と最後の push（ユーザー実施）のみ
 - **Date**: 2026-10-06
-- **Last completed**: #4 Excel削除（QA Verdict OK、残存0件）
-- **Next**: #5 Excelなしで全テストパス確認＋YamlTestDataParser使用確認
+- **Last completed**: #5 Excelなしで全テストパス確認＋YamlTestDataParser使用確認（QA/Language/SE 全OK）
+- **Next**: ユーザーによるまとめレビュー → push
+- **Notes**: 申し送り1件（非ブロッカー）: QA独立検証の初回cleanビルドで component-configuration.xml の import 不検出による一過性フレーク発生（再現せず、WSL2のビルド時ファイル可視性レースと判断、YAML移行成果物とは無関係）。自前の mvn clean test は BUILD SUCCESS。
 - **Notes**: ベースライン `mvn clean test` = BUILD SUCCESS（Tests run: 1, Failures: 0, Errors: 0, Skipped: 0）。user review は順調時まとめて実施方針。
