@@ -57,9 +57,9 @@ README で確認した手順:
 - [x] `mvn dependency:resolve` / `mvn help:describe -Dplugin=com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT` で解決を確認する
 - [x] 変更したファイルをコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-2.md)
-- [ ] QA expert review (Agent: general-purpose / Opus)
-- [ ] language expert review (Agent: general-purpose / Opus)
-- [ ] software-engineering expert review (Agent: general-purpose / Opus)
+- [x] QA expert review (Agent: general-purpose / Opus) — OK
+- [x] language expert review (Agent: general-purpose / Opus) — OK
+- [x] software-engineering expert review (Agent: general-purpose / Opus) — OK（軽微所見: SNAPSHOT 直書き2か所。web/batch 準拠のため現状維持）
 - [ ] user review（全task完了後にまとめて実施）
 **Completion criteria**:
 - `pom.xml` に `nablarch-testing-yaml:1.0.0-SNAPSHOT` が test スコープで追加されている
@@ -122,5 +122,5 @@ README で確認した手順:
 - 対象ファイルの改行コード（CRLF）は維持する。
 
 ## State
-- Status: #1 完了（QA OK）、#2 実施中
+- Status: #1・#2 完了（全レビュー OK）、#3 実施中
 - Notes: 過去の移行コミット（`996b356`〜`ca0dd1f`）は維持。ベースラインコミット `0dfe07e` の上に再実施分を積む。push はユーザーが最後に実施。
