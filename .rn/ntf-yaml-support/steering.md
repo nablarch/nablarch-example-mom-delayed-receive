@@ -38,7 +38,7 @@ README で確認した手順:
 - [x] 結果を `checks/task-1.md` に記録する（self-check列）
 - [x] 変更ファイル（check ファイル、steering.md、指示書のコピー、scripts）をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-1.md)
-- [ ] QA expert review (Agent: general-purpose / Opus)
+- [x] QA expert review (Agent: general-purpose / Opus) — OK（軽微指摘: task-1.md に script 目的を追記→対応済み）
 - [ ] user review（全task完了後にまとめて実施）
 **Completion criteria**:
 - 既存の `ntf-yaml-support` ブランチ上で作業しており、コミット履歴が維持されている（再作成・rebase・amend・hard reset なし。過去の移行コミットが残っている）
@@ -118,5 +118,5 @@ README で確認した手順:
 - `scripts/dump_xlsx_grid.py` — 標準ライブラリ（zipfile + xml.etree）のみで `.xlsx` の各シートをセルグリッド（セル参照→値）として出力する。openpyxl 非導入環境でも、task-3 の Excel↔YAML サンプリング比較で元Excel側の値を正確に読むためのスクリプト。使い方: `python3 -I .rn/ntf-yaml-support/scripts/dump_xlsx_grid.py <xlsx>`
 
 ## State
-- Status: #1 実施中（QA レビュー待ち）
+- Status: #1 完了（QA OK）、#2 実施中
 - Notes: 過去の移行コミット（`996b356`〜`ca0dd1f`）は維持。ベースラインコミット `0dfe07e` の上に再実施分を積む。push はユーザーが最後に実施。
