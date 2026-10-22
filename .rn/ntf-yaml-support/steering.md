@@ -89,10 +89,10 @@ README で確認した手順:
 **Purpose**: 変換対象だった Excel を削除してコミットする。
 **Prerequisites**: #3
 **Steps**:
-- [ ] 変換対象となった Excel ファイルを削除する
-- [ ] 削除結果（残存Excel 0件）を `checks/task-4.md` に記録する
-- [ ] Excelファイル削除をコミットする
-- [ ] self-check (OK/NG per completion criterion, record in checks/task-4.md)
+- [x] 変換対象となった Excel ファイルを削除する（`ProjectInsertMessageRequestTest.xlsx`）
+- [x] 削除結果（残存Excel 0件）を `checks/task-4.md` に記録する
+- [x] Excelファイル削除をコミットする
+- [x] self-check (OK/NG per completion criterion, record in checks/task-4.md)
 - [ ] QA expert review (Agent: general-purpose / Opus)
 - [ ] user review（全task完了後にまとめて実施）
 **Completion criteria**:
@@ -123,5 +123,5 @@ README で確認した手順:
 - 対象ファイルの改行コード（CRLF）は維持する。
 
 ## State
-- Status: #1〜#3 完了（全レビュー OK）、#4 実施中
+- Status: #1〜#3 完了（全レビュー OK）、#4 実施中（QA レビュー待ち）
 - Notes: 過去の移行コミット（`996b356`〜`ca0dd1f`）は維持。ベースラインコミット `0dfe07e` の上に再実施分を積む。push はユーザーが最後に実施。
