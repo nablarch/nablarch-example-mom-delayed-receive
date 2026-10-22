@@ -39,7 +39,7 @@ README で確認した手順:
 - [x] 変更ファイル（check ファイル、steering.md、指示書のコピー、scripts）をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-1.md)
 - [x] QA expert review (Agent: general-purpose / Opus) — OK（軽微指摘: task-1.md に script 目的を追記→対応済み）
-- [ ] user review（全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 **Completion criteria**:
 - 既存の `ntf-yaml-support` ブランチ上で作業しており、コミット履歴が維持されている（再作成・rebase・amend・hard reset なし。過去の移行コミットが残っている）
 - ブランチの既存先端の上に、ワーキングツリー全体が `develop` と同一内容になる新規コミットが1つ積まれている
@@ -60,7 +60,7 @@ README で確認した手順:
 - [x] QA expert review (Agent: general-purpose / Opus) — OK
 - [x] language expert review (Agent: general-purpose / Opus) — OK
 - [x] software-engineering expert review (Agent: general-purpose / Opus) — OK（軽微所見: SNAPSHOT 直書き2か所。web/batch 準拠のため現状維持）
-- [ ] user review（全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 **Completion criteria**:
 - `pom.xml` に `nablarch-testing-yaml:1.0.0-SNAPSHOT` が test スコープで追加されている
 - `pom.xml` の `<build><plugins>` に `nablarch-testing-converter:1.0.0-SNAPSHOT` がビルドプラグインとして追加されている
@@ -79,7 +79,7 @@ README で確認した手順:
 - [x] 変換したYAMLファイルをコミットする（Excelはまだ削除しない）
 - [x] self-check (OK/NG per completion criterion, record in checks/task-3.md)
 - [x] QA expert review (Agent: general-purpose / Opus) — OK（差異なし）
-- [ ] user review（全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 **Completion criteria**:
 - 変換対象の全てのExcelファイルに対応するYAMLファイルが生成されている
 - サンプリング比較でExcelとYAMLの内容が一致している
@@ -94,7 +94,7 @@ README で確認した手順:
 - [x] Excelファイル削除をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-4.md)
 - [x] QA expert review (Agent: general-purpose / Opus) — OK
-- [ ] user review（全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 **Completion criteria**:
 - 変換対象だった全 Excel ファイルが削除されている
 - 削除がコミットされている
@@ -109,7 +109,7 @@ README で確認した手順:
 - [x] QA expert review (Agent: general-purpose / Opus) — OK（変異テストで YAML の有効性を裏付け）
 - [x] language expert review (Agent: general-purpose / Opus) — OK
 - [x] software-engineering expert review (Agent: general-purpose / Opus) — OK
-- [ ] user review（全task完了後にまとめて実施）
+- [x] user review — OK（全task完了後にまとめて実施、ユーザー承認済み）
 **Completion criteria**:
 - `mvn test` が BUILD SUCCESS で終了する（全テストパス、Excel ファイルなし）
 - テストログで YamlTestDataParser が実際に使われていることが確認できる
@@ -124,5 +124,5 @@ README で確認した手順:
 - `ProjectInsertMessageRequestTest/setUpDb.yaml`（0バイト）は元 Excel の空シート `setUpDb` を converter がそのまま変換したもの。元データとの1対1対応を保つため残置する（NTF の YamlLoader は空ファイルを空 Map として扱い、テストからは参照されない）。
 
 ## State
-- Status: #1〜#5 完了（全レビュー OK）。user review（まとめて実施）待ち。push はユーザーが実施
+- Status: #1〜#5 完了・user review OK（ユーザー承認済み）。残りは push（ユーザーが実施）のみ
 - Notes: 過去の移行コミット（`996b356`〜`ca0dd1f`）は維持。ベースラインコミット `0dfe07e` の上に再実施分を積む。push はユーザーが最後に実施。

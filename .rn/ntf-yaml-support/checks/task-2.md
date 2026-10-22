@@ -46,3 +46,4 @@
 - Language expert: OK
 - Software-engineering expert: OK
 - Ready for user review: Yes
+- User review: OK（ユーザー承認済み）
