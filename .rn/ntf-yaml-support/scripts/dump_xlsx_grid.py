@@ -17,6 +17,17 @@ NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 PKG = "{http://schemas.openxmlformats.org/package/2006/relationships}"
 
 
+def text_of(el):
+    """<si> / <is> 配下のテキストを連結する（ふりがな <rPh> は除外し、表示上の基底テキストのみ）。"""
+    parts = []
+    for child in el:
+        if child.tag == f"{NS}t":
+            parts.append(child.text or "")
+        elif child.tag == f"{NS}r":
+            parts.extend(t.text or "" for t in child.iter(f"{NS}t"))
+    return "".join(parts)
+
+
 def col_to_idx(ref):
     """セル参照 'B12' の列文字 'B' を 0 始まりの列番号に変換する。"""
     letters = "".join(ch for ch in ref if ch.isalpha())
@@ -38,8 +49,8 @@ def main(path):
     if "xl/sharedStrings.xml" in z.namelist():
         root = ET.fromstring(z.read("xl/sharedStrings.xml"))
         for si in root.findall(f"{NS}si"):
-            # <si> 配下の全 <t> を連結（リッチテキスト対応）
-            shared.append("".join(t.text or "" for t in si.iter(f"{NS}t")))
+            # リッチテキスト対応。ふりがな（<rPh>）は値ではないため除外する
+            shared.append(text_of(si))
 
     # シート名と対応するファイル
     wb = ET.fromstring(z.read("xl/workbook.xml"))
@@ -69,7 +80,7 @@ def main(path):
                 if t == "inlineStr":
                     is_el = c.find(f"{NS}is")
                     if is_el is not None:
-                        v = "".join(x.text or "" for x in is_el.iter(f"{NS}t"))
+                        v = text_of(is_el)
                 else:
                     v_el = c.find(f"{NS}v")
                     if v_el is not None:

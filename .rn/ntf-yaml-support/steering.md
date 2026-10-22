@@ -71,13 +71,13 @@ README で確認した手順:
 **Purpose**: `nablarch-testing-converter` で ExcelテストデータをYAMLへ変換し、ソースツリー内に配置して、サンプリングで内容を確認する。
 **Prerequisites**: #2
 **Steps**:
-- [ ] 対象 Excel ファイルの所在を確認する
-- [ ] 同名の `.xls` と `.xlsx` の併存有無を確認する
-- [ ] converter README の手順に従い、全対象ExcelをYAML変換する
-- [ ] 各YAMLファイルについてExcelとサンプリング比較する（各ファイル最低3件。3件未満は全件）
-- [ ] 比較結果を `checks/task-3.md` の「Sampling Comparison」に記録する
-- [ ] 変換したYAMLファイルをコミットする（Excelはまだ削除しない）
-- [ ] self-check (OK/NG per completion criterion, record in checks/task-3.md)
+- [x] 対象 Excel ファイルの所在を確認する（`ProjectInsertMessageRequestTest.xlsx` 1件）
+- [x] 同名の `.xls` と `.xlsx` の併存有無を確認する（併存なし）
+- [x] converter README の手順に従い、全対象ExcelをYAML変換する（`mvn com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT:convert` → Converted 1 file(s)）
+- [x] 各YAMLファイルについてExcelとサンプリング比較する（全ブロック全件 100件、NG 0）
+- [x] 比較結果を `checks/task-3.md` の「Sampling Comparison」に記録する
+- [x] 変換したYAMLファイルをコミットする（Excelはまだ削除しない）
+- [x] self-check (OK/NG per completion criterion, record in checks/task-3.md)
 - [ ] QA expert review (Agent: general-purpose / Opus)
 - [ ] user review（全task完了後にまとめて実施）
 **Completion criteria**:
@@ -115,12 +115,13 @@ README で確認した手順:
 - テストログで YamlTestDataParser が実際に使われていることが確認できる
 
 ## Scripts
-- `scripts/dump_xlsx_grid.py` — 標準ライブラリ（zipfile + xml.etree）のみで `.xlsx` の各シートをセルグリッド（セル参照→値）として出力する。openpyxl 非導入環境でも、task-3 の Excel↔YAML サンプリング比較で元Excel側の値を正確に読むためのスクリプト。使い方: `python3 -I .rn/ntf-yaml-support/scripts/dump_xlsx_grid.py <xlsx>`
+- `scripts/dump_xlsx_grid.py` — 標準ライブラリ（zipfile + xml.etree）のみで `.xlsx` の各シートをセルグリッド（セル参照→値）として出力する。openpyxl 非導入環境でも、task-3 の Excel↔YAML サンプリング比較で元Excel側の値を正確に読むためのスクリプト。使い方: `python3 -I .rn/ntf-yaml-support/scripts/dump_xlsx_grid.py <xlsx>`（task-3 でふりがな `<rPh>` を値から除外するよう修正）
+- `scripts/compare_xlsx_yaml.py` — task-3 のサンプリング比較用。Excel の各データブロック（LIST_MAP / SETUP_TABLE / MESSAGE / EXPECTED_TABLE）の値と変換後 YAML の値を突合し TSV で一致/不一致を出力する（結果: `checks/task-3-compare.tsv`）。使い方: `python3 -I .rn/ntf-yaml-support/scripts/compare_xlsx_yaml.py <xlsx> <yaml-dir>`
 
 ## Decisions
 - `YamlTestDataParser` の配置先 = `src/test/resources/unit-test.xml` のみ。本テストは `@MessagingReceiveTest` の応答不要受信テストで、Excel に `RESPONSE_*` ブロックがなく sendSync もないため、アクション実行中に `testDataParser` は参照されない（Rules の「非該当」ケース）。本番用設定（`src/main/resources`）・`messaging-async-receive-boot.xml` は変更しない。
 - 対象ファイルの改行コード（CRLF）は維持する。
 
 ## State
-- Status: #1・#2 完了（全レビュー OK）、#3 実施中
+- Status: #1・#2 完了（全レビュー OK）、#3 実施中（QA レビュー待ち）
 - Notes: 過去の移行コミット（`996b356`〜`ca0dd1f`）は維持。ベースラインコミット `0dfe07e` の上に再実施分を積む。push はユーザーが最後に実施。
