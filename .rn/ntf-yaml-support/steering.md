@@ -19,7 +19,7 @@ README で確認した手順:
 - エンティティ生成・DBセットアップ: `gsp-dba-maven-plugin` が `generate-sources` フェーズにバインドされており（generate-ddl / execute-ddl / load-data）、`mvn test` / `mvn package` 実行時に自動で走る。README記載の `mvn generate-resources` で個別実行も可能。
 - テスト実行コマンド: `mvn clean test`（エンティティ生成を内包）
 - ロケール: NTF のメッセージ解決のため日本語ロケールで実行する（本環境は `LANG=ja_JP.UTF-8 LC_ALL=ja_JP.UTF-8` が既定）。
-- 実行環境: JDK 21.0.2 / Maven 3.9.16
+- 実行環境: Maven 3.9.16 / Java 17.0.20（Eclipse Adoptium Temurin。`~/.mavenrc` で `JAVA_HOME` を temurin-17 に設定しており、Maven はシェルの既定 java（21.0.2）ではなく Java 17 で実行される。README の動作環境 Java 17 と一致。`mvn -v` および surefire レポートの `java.version=17.0.20` で確認）
 
 ## Tasks
 
