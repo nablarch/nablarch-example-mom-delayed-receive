@@ -93,7 +93,7 @@ README で確認した手順:
 - [x] 削除結果（残存Excel 0件）を `checks/task-4.md` に記録する
 - [x] Excelファイル削除をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-4.md)
-- [ ] QA expert review (Agent: general-purpose / Opus)
+- [x] QA expert review (Agent: general-purpose / Opus) — OK
 - [ ] user review（全task完了後にまとめて実施）
 **Completion criteria**:
 - 変換対象だった全 Excel ファイルが削除されている
@@ -123,5 +123,5 @@ README で確認した手順:
 - 対象ファイルの改行コード（CRLF）は維持する。
 
 ## State
-- Status: #1〜#3 完了（全レビュー OK）、#4 実施中（QA レビュー待ち）
+- Status: #1〜#4 完了（全レビュー OK）、#5 実施中
 - Notes: 過去の移行コミット（`996b356`〜`ca0dd1f`）は維持。ベースラインコミット `0dfe07e` の上に再実施分を積む。push はユーザーが最後に実施。
