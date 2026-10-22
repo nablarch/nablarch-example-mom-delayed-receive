@@ -50,13 +50,13 @@ README で確認した手順:
 **Purpose**: `pom.xml` に `nablarch-testing-yaml`（test 依存）と `nablarch-testing-converter`（ビルドプラグイン。plugin直下 `<configuration>` に変換パラメータ、CLIで `convert` ゴール実行）を追加し、`YamlTestDataParser`（`testDataParser`）を Rules の「全フェーズで有効化」方針に従い配置する。`interpreters` は testdata.html の設定例どおり。
 **Prerequisites**: #1
 **Steps**:
-- [ ] `pom.xml` に `nablarch-testing-yaml:1.0.0-SNAPSHOT`（test scope）を追加する
-- [ ] `pom.xml` の `<build><plugins>` に `nablarch-testing-converter:1.0.0-SNAPSHOT` を追加する（`<configuration>` に from=xls / to=yaml / input / output / overwrite。web/batch 準拠）
-- [ ] 実行中にモック等が `testDataParser` 経由でテストデータ（応答電文など）を読む構成かを判定する
-- [ ] 判定結果に応じて `YamlTestDataParser` を配置する（`interpreters` は `dateTimeInterpreter` → `compositeInterpreter` の2つのみ。`test-data.xml` import・`dbInfo` 定義より後）
-- [ ] `mvn dependency:resolve` / `mvn help:describe -Dplugin=com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT` で解決を確認する
-- [ ] 変更したファイルをコミットする
-- [ ] self-check (OK/NG per completion criterion, record in checks/task-2.md)
+- [x] `pom.xml` に `nablarch-testing-yaml:1.0.0-SNAPSHOT`（test scope）を追加する
+- [x] `pom.xml` の `<build><plugins>` に `nablarch-testing-converter:1.0.0-SNAPSHOT` を追加する（`<configuration>` に from=xls / to=yaml / input / output / overwrite。web/batch 準拠）
+- [x] 実行中にモック等が `testDataParser` 経由でテストデータ（応答電文など）を読む構成かを判定する → 非該当（`RESPONSE_*` なし・sendSync なしの応答不要受信テスト。setUpMessages/SETUP/EXPECTED の読込はいずれも unit-test.xml 有効時）
+- [x] 判定結果に応じて `YamlTestDataParser` を配置する → `src/test/resources/unit-test.xml`（`interpreters` は `dateTimeInterpreter` → `compositeInterpreter` の2つのみ。`test-data.xml` import・`dbInfo` 定義より後）
+- [x] `mvn dependency:resolve` / `mvn help:describe -Dplugin=com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT` で解決を確認する
+- [x] 変更したファイルをコミットする
+- [x] self-check (OK/NG per completion criterion, record in checks/task-2.md)
 - [ ] QA expert review (Agent: general-purpose / Opus)
 - [ ] language expert review (Agent: general-purpose / Opus)
 - [ ] software-engineering expert review (Agent: general-purpose / Opus)
@@ -116,6 +116,10 @@ README で確認した手順:
 
 ## Scripts
 - `scripts/dump_xlsx_grid.py` — 標準ライブラリ（zipfile + xml.etree）のみで `.xlsx` の各シートをセルグリッド（セル参照→値）として出力する。openpyxl 非導入環境でも、task-3 の Excel↔YAML サンプリング比較で元Excel側の値を正確に読むためのスクリプト。使い方: `python3 -I .rn/ntf-yaml-support/scripts/dump_xlsx_grid.py <xlsx>`
+
+## Decisions
+- `YamlTestDataParser` の配置先 = `src/test/resources/unit-test.xml` のみ。本テストは `@MessagingReceiveTest` の応答不要受信テストで、Excel に `RESPONSE_*` ブロックがなく sendSync もないため、アクション実行中に `testDataParser` は参照されない（Rules の「非該当」ケース）。本番用設定（`src/main/resources`）・`messaging-async-receive-boot.xml` は変更しない。
+- 対象ファイルの改行コード（CRLF）は維持する。
 
 ## State
 - Status: #1 完了（QA OK）、#2 実施中
