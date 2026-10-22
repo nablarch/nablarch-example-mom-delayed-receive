@@ -103,9 +103,9 @@ README で確認した手順:
 **Purpose**: Excelなしで全テストがパスすることを確認する。
 **Prerequisites**: #4
 **Steps**:
-- [ ] `mvn clean test` が BUILD SUCCESS になることを確認する
-- [ ] テストログで YamlTestDataParser が実際に使われていることを確認する
-- [ ] self-check (OK/NG per completion criterion, record in checks/task-5.md)
+- [x] `mvn clean test` が BUILD SUCCESS になることを確認する（Excel なし、Tests run: 1, Failures: 0）
+- [x] テストログで YamlTestDataParser が実際に使われていることを確認する（上書き WARN ＋ YamlTestDataParser INFO ＋ YAML 値によるテストショット実行）
+- [x] self-check (OK/NG per completion criterion, record in checks/task-5.md)
 - [ ] QA expert review (Agent: general-purpose / Opus)
 - [ ] language expert review (Agent: general-purpose / Opus)
 - [ ] software-engineering expert review (Agent: general-purpose / Opus)
@@ -123,5 +123,5 @@ README で確認した手順:
 - 対象ファイルの改行コード（CRLF）は維持する。
 
 ## State
-- Status: #1〜#4 完了（全レビュー OK）、#5 実施中
+- Status: #1〜#4 完了（全レビュー OK）、#5 実施中（3レビュー待ち）
 - Notes: 過去の移行コミット（`996b356`〜`ca0dd1f`）は維持。ベースラインコミット `0dfe07e` の上に再実施分を積む。push はユーザーが最後に実施。
