@@ -4,9 +4,9 @@
 
 | Criterion | Self-check | Evidence | QA | QA Evidence |
 |---|---|---|---|---|
-| 変換対象の全てのExcelファイルに対応するYAMLファイルが生成されている | OK | 対象Excelは `git ls-files` / `find`（target・work 除外）で `src/test/java/com/nablarch/example/ProjectInsertMessageRequestTest.xlsx` の1件のみ。`mvn com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT:convert`（pom の `<configuration>` 使用）→ `Converted 1 file(s).` / BUILD SUCCESS。2シート（setUpDb / testNormalEnd）に対応する `ProjectInsertMessageRequestTest/setUpDb.yaml`（空シート→0バイト）・`testNormalEnd.yaml` を生成 | - | - |
-| サンプリング比較でExcelとYAMLの内容が一致している | OK | `scripts/compare_xlsx_yaml.py` で全ブロックの全データ値（各ブロック3件以上。元データ3件未満のブロックは全件）を比較し total=100 / OK=100 / NG=0（結果: `checks/task-3-compare.tsv`）。差異なし | - | - |
-| 変換後のYAMLファイルがコミットされている | OK | YAML 2ファイルを task-3 コミットに含める（Excel は未削除） | - | - |
+| 変換対象の全てのExcelファイルに対応するYAMLファイルが生成されている | OK | 対象Excelは `git ls-files` / `find`（target・work 除外）で `src/test/java/com/nablarch/example/ProjectInsertMessageRequestTest.xlsx` の1件のみ。`mvn com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT:convert`（pom の `<configuration>` 使用）→ `Converted 1 file(s).` / BUILD SUCCESS。2シート（setUpDb / testNormalEnd）に対応する `ProjectInsertMessageRequestTest/setUpDb.yaml`（空シート→0バイト）・`testNormalEnd.yaml` を生成 OK | target/・work/ 除外の `find`・`git ls-files` で Excel は1件、同名 `.xls` なし。workbook のシート2つ（setUpDb/testNormalEnd）に各 YAML あり。setUpDb はセル値0件で、NTF YamlLoader は0バイト YAML を emptyMap として扱う |
+| サンプリング比較でExcelとYAMLの内容が一致している | OK | `scripts/compare_xlsx_yaml.py` で全ブロックの全データ値（各ブロック3件以上。元データ3件未満のブロックは全件）を比較し total=100 / OK=100 / NG=0（結果: `checks/task-3-compare.tsv`）。差異なし OK | 独自ダンプ（rPh 除外）から期待 YAML 構造を全件組み立て、`BaseLoader` で読んだ testNormalEnd.yaml と構造全体が完全一致。B4/A11/B27/P31/R39 等を個別突合し一致。`compare_xlsx_yaml.py` 再実行結果は tsv とバイト一致。差異なし |
+| 変換後のYAMLファイルがコミットされている | OK | YAML 2ファイルを task-3 コミットに含める（Excel は未削除） OK | `git ls-files` に YAML 2件と xlsx が存在（xlsx は HEAD とワーキングツリーで md5 一致＝未削除）。`__pycache__` は `280a4f5` で除去済み |
 
 ## Sampling Comparison（task-3 のみ）
 | YAML ファイル | 比較件数 | レコードキー/行 | Excel 値 | YAML 値 | 一致 |
@@ -42,8 +42,8 @@
 
 | Aspect | Verdict | Evidence / Improvement |
 |---|---|---|
-| Meaningful tests/verification | - | - |
-| Edge case coverage | - | - |
+| Meaningful tests/verification | OK | 全セル値を比較。値改変の変異（PROJECT_LEADER→`佐藤X`）を NG として検出。NTF 側は snakeyaml-engine（YAML 1.2）でキー `no` の真偽値化も起きないことを確認 |
+| Edge case coverage | OK | 空シート・データ0行 SETUP_TABLE・空セル（FILLER2）・コメント行・rPh を網羅。改善余地（任意）: 比較スクリプトは Excel→YAML の片方向で YAML 側のみの余剰キー/ブロックは未検出、ブロック終端判定が空行基準（NTF は次マーカーまで）。今回データでは影響なし（逆方向の構造一致は QA が確認済み） |
 
 ## Expert Reviews (code changes only)
 
@@ -52,7 +52,7 @@ N/A — no code changes in this task.
 ## Overall Verdict
 
 - Self-check: OK
-- QA: -
+- QA: OK（差異なし。比較スクリプトの双方向化は任意の改善提案）
 - Language expert: N/A
 - Software-engineering expert: N/A
-- Ready for user review: -
+- Ready for user review: Yes
