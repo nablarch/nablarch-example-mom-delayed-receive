@@ -106,9 +106,9 @@ README で確認した手順:
 - [x] `mvn clean test` が BUILD SUCCESS になることを確認する（Excel なし、Tests run: 1, Failures: 0）
 - [x] テストログで YamlTestDataParser が実際に使われていることを確認する（上書き WARN ＋ YamlTestDataParser INFO ＋ YAML 値によるテストショット実行）
 - [x] self-check (OK/NG per completion criterion, record in checks/task-5.md)
-- [ ] QA expert review (Agent: general-purpose / Opus)
-- [ ] language expert review (Agent: general-purpose / Opus)
-- [ ] software-engineering expert review (Agent: general-purpose / Opus)
+- [x] QA expert review (Agent: general-purpose / Opus) — OK（変異テストで YAML の有効性を裏付け）
+- [x] language expert review (Agent: general-purpose / Opus) — OK
+- [x] software-engineering expert review (Agent: general-purpose / Opus) — OK
 - [ ] user review（全task完了後にまとめて実施）
 **Completion criteria**:
 - `mvn test` が BUILD SUCCESS で終了する（全テストパス、Excel ファイルなし）
@@ -121,7 +121,8 @@ README で確認した手順:
 ## Decisions
 - `YamlTestDataParser` の配置先 = `src/test/resources/unit-test.xml` のみ。本テストは `@MessagingReceiveTest` の応答不要受信テストで、Excel に `RESPONSE_*` ブロックがなく sendSync もないため、アクション実行中に `testDataParser` は参照されない（Rules の「非該当」ケース）。本番用設定（`src/main/resources`）・`messaging-async-receive-boot.xml` は変更しない。
 - 対象ファイルの改行コード（CRLF）は維持する。
+- `ProjectInsertMessageRequestTest/setUpDb.yaml`（0バイト）は元 Excel の空シート `setUpDb` を converter がそのまま変換したもの。元データとの1対1対応を保つため残置する（NTF の YamlLoader は空ファイルを空 Map として扱い、テストからは参照されない）。
 
 ## State
-- Status: #1〜#4 完了（全レビュー OK）、#5 実施中（3レビュー待ち）
+- Status: #1〜#5 完了（全レビュー OK）。user review（まとめて実施）待ち。push はユーザーが実施
 - Notes: 過去の移行コミット（`996b356`〜`ca0dd1f`）は維持。ベースラインコミット `0dfe07e` の上に再実施分を積む。push はユーザーが最後に実施。
